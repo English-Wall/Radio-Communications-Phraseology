@@ -37,15 +37,15 @@ function dragStart(event) {
 // Allow dropping letters into the answer area
 const answerDiv = document.querySelector('.answer');
 answerDiv.addEventListener('dragover', function(event) {
-  event.preventDefault();
+  event.preventDefault();  // 允許放下字母
 });
 
 answerDiv.addEventListener('drop', function(event) {
   event.preventDefault();
   if (draggedLetter) {
-    answerDiv.appendChild(draggedLetter);
-    draggedLetter.style.opacity = 1;
-    draggedLetter.removeAttribute('draggable');
+    answerDiv.appendChild(draggedLetter); // 把字母移動到答案區
+    draggedLetter.style.opacity = 1; // 恢復字母透明度
+    draggedLetter.removeAttribute('draggable'); // 移除拖放屬性
     draggedLetter = null;
   }
 });
