@@ -4,20 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Word Scramble Game</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css"> <!-- 確保引入 CSS -->
 </head>
 <body>
   <div class="game-container">
     <h1>Word Scramble Game</h1>
-    <div class="puzzle">
-      <!-- Scrambled letters will be placed here -->
-    </div>
-    <div class="answer">
-      <!-- Player's answer will be placed here -->
-    </div>
+    
+    <!-- 顯示被打亂的字母區 -->
+    <div class="puzzle"></div>
+    
+    <!-- 顯示答案區 -->
+    <div class="answer"></div>
+    
+    <!-- 檢查答案按鈕 -->
     <button id="checkBtn">Check Answer</button>
+    
+    <!-- 顯示結果 -->
     <div id="result"></div>
   </div>
+
+  <!-- 引入 JavaScript -->
   <script src="script.js"></script>
 </body>
 </html>
