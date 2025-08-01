@@ -1,6 +1,12 @@
 // Puzzle word (can be replaced with any word you want)
 const word = 'engine';
 
+// 隨機生成顏色
+function getRandomColor() {
+  const colors = ['#f7b7b7', '#b7d7f7', '#f7d7b7', '#d7f7b7', '#f7f7b7'];
+  return colors[Math.floor(Math.random() * colors.length)];
+}
+
 // Shuffle the word to create a puzzle
 function shuffleWord(word) {
   const letters = word.split('');
@@ -22,6 +28,7 @@ function createPuzzle() {
     letterDiv.classList.add('letter');
     letterDiv.textContent = letter;
     letterDiv.setAttribute('draggable', 'true');
+    letterDiv.style.backgroundColor = getRandomColor(); // 設置隨機顏色
     letterDiv.addEventListener('dragstart', dragStart);
     puzzleDiv.appendChild(letterDiv);
   });
@@ -37,14 +44,14 @@ function dragStart(event) {
 // Allow dropping letters into the answer area
 const answerDiv = document.querySelector('.answer');
 answerDiv.addEventListener('dragover', function(event) {
-  event.preventDefault();  // 允許放下字母
+  event.preventDefault();
 });
 
 answerDiv.addEventListener('drop', function(event) {
   event.preventDefault();
   if (draggedLetter) {
-    answerDiv.appendChild(draggedLetter); // 把字母移動到答案區
-    draggedLetter.style.opacity = 1; // 恢復字母透明度
+    answerDiv.appendChild(draggedLetter); // 把字母放到答案區域
+    draggedLetter.style.opacity = 1;
     draggedLetter.removeAttribute('draggable'); // 移除拖放屬性
     draggedLetter = null;
   }
