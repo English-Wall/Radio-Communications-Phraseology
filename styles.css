@@ -1,13 +1,39 @@
-.answer {
+/* 設置全局字體 */
+body {
+  font-family: 'PT Sans', sans-serif;
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
-  height: 60px;
-  border: 2px solid #ddd; /* 可選：顯示邊框 */
-  padding: 10px;
-  background-color: #f9f9f9;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
 }
 
+/* 遊戲容器 */
+.game-container {
+  text-align: center;
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 450px;
+  max-width: 90%;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* 提示區域 */
+.hint {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+/* 打亂字母區 */
 .puzzle {
   display: flex;
   justify-content: center;
@@ -16,15 +42,84 @@
   flex-wrap: wrap;
 }
 
+/* 每個字母 */
 .puzzle .letter {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   background-color: #f0f0f0;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* 隨機背景顏色 */
+.puzzle .letter:nth-child(odd) {
+  background-color: #f7b7b7; /* 淺紅色 */
+}
+
+.puzzle .letter:nth-child(even) {
+  background-color: #b7d7f7; /* 淺藍色 */
+}
+
+/* 當滑鼠懸停時的變化 */
+.puzzle .letter:hover {
+  background-color: #ff9e9e; /* 橙色 */
+}
+
+/* 答案區域 */
+.answer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  height: 60px;
+  border: 2px solid #ddd;
+  padding: 10px;
+  background-color: #f9f9f9;
+  gap: 10px;
+}
+
+.answer .letter {
+  width: 60px;
+  height: 60px;
+  background-color: #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  font-weight: bold;
+  border-radius: 10px;
+  opacity: 0.7;
+}
+
+/* 檢查答案按鈕 */
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
   border-radius: 4px;
   cursor: pointer;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* 結果顯示 */
+#result {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: green;
+}
+
+#result.red {
+  color: red;
 }
