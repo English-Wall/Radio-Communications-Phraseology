@@ -38,11 +38,14 @@ h1 {
 .puzzle {
   display: flex;
   justify-content: center;
-  align-items: center; /* <<< 修改點：讓字母垂直置中 */
+  align-items: center; /* <<< 讓字母垂直置中 */
   margin-bottom: 20px;
   gap: 8px;
   flex-wrap: nowrap;
-  min-height: 70px; /* <<< 修改點：設定最小高度，防止坍塌 */
+  min-height: 70px; /* <<< 設定最小高度，防止坍塌 */
+  flex-direction: column; /* 允許內容垂直排列 (用於結束畫面) */
+  font-size: 20px;       /* 為結束畫面的文字設定一個合適的大小 */
+  line-height: 1.6;      /* 增加行高，讓文字更易讀 */
 }
 
 /* 每個字母 */
@@ -127,55 +130,4 @@ button:hover {
 
 #result.red {
   color: red;
-}
-
-/* 按鈕容器，讓兩個按鈕並排 */
-.button-container {
-  display: flex;
-  justify-content: center;
-  gap: 15px; /* 按鈕間的距離 */
-  margin-top: 20px;
-}
-
-/* 提示按鈕的樣式 */
-#hintBtn {
-  background-color: #f0ad4e; /* 橘色，與綠色區分 */
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 18px;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 0; /* 因為已經由容器管理 margin-top */
-}
-
-#hintBtn:hover {
-  background-color: #ec971f;
-}
-
-/* 按鈕被禁用時的樣式 */
-#hintBtn:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
-}
-
-/* 被鎖定的字母樣式 */
-.letter.locked {
-  background-color: #d8d8d8 !important; /* 強制使用灰色背景 */
-  color: #555;
-  cursor: not-allowed; /* 滑鼠指標變為「禁止」 */
-  opacity: 0.8;
-}
-
-/* --- 修改原有的 button 樣式 --- */
-/* 移除原本按鈕的上邊距，因為已由新容器管理 */
-button {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 18px;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 0; /* 從 20px 改為 0 */
 }
