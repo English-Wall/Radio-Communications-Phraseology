@@ -16,7 +16,7 @@ body {
   padding: 40px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 450px;
+  width: 750px;
   max-width: 90%;
 }
 
@@ -24,6 +24,7 @@ h1 {
   font-size: 32px;
   margin-bottom: 20px;
   color: #333;
+  white-space: nowrap; /* <<< 修改點：強制標題不換行 */
 }
 
 /* 提示區域 */
@@ -37,20 +38,22 @@ h1 {
 .puzzle {
   display: flex;
   justify-content: center;
+  align-items: center; /* <<< 修改點：讓字母垂直置中 */
   margin-bottom: 20px;
-  gap: 15px;
-  flex-wrap: wrap;
+  gap: 8px;
+  flex-wrap: nowrap;
+  min-height: 70px; /* <<< 修改點：設定最小高度，防止坍塌 */
 }
 
 /* 每個字母 */
 .puzzle .letter {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   background-color: #f0f0f0;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: bold;
   border-radius: 10px;
   cursor: pointer;
@@ -75,22 +78,24 @@ h1 {
 .answer {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-bottom: 20px;
-  height: 60px;
+  height: 75px;
   border: 2px solid #ddd;
   padding: 10px;
   background-color: #f9f9f9;
-  gap: 10px;
+  gap: 8px;
+  min-height: 75px;
 }
 
 .answer .letter {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   background-color: #ddd;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: bold;
   border-radius: 10px;
   opacity: 0.7;
@@ -122,4 +127,55 @@ button:hover {
 
 #result.red {
   color: red;
+}
+
+/* 按鈕容器，讓兩個按鈕並排 */
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* 按鈕間的距離 */
+  margin-top: 20px;
+}
+
+/* 提示按鈕的樣式 */
+#hintBtn {
+  background-color: #f0ad4e; /* 橘色，與綠色區分 */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 0; /* 因為已經由容器管理 margin-top */
+}
+
+#hintBtn:hover {
+  background-color: #ec971f;
+}
+
+/* 按鈕被禁用時的樣式 */
+#hintBtn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* 被鎖定的字母樣式 */
+.letter.locked {
+  background-color: #d8d8d8 !important; /* 強制使用灰色背景 */
+  color: #555;
+  cursor: not-allowed; /* 滑鼠指標變為「禁止」 */
+  opacity: 0.8;
+}
+
+/* --- 修改原有的 button 樣式 --- */
+/* 移除原本按鈕的上邊距，因為已由新容器管理 */
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 0; /* 從 20px 改為 0 */
 }
