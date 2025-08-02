@@ -1,130 +1,40 @@
-/* 設置全局字體 */
-body {
-  font-family: 'PT Sans', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  background-color: #f0f0f0;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word Scramble Game</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- 引入 PT Sans 字體 -->
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="game-container">
+    <h1>Word Scramble Game</h1>
 
-/* 遊戲容器 */
-.game-container {
-  text-align: center;
-  background-color: #fff;
-  padding: 40px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 750px;
-  max-width: 90%;
-}
+    <!-- 提示區域 -->
+    <div class="hint">
+      <p>Hint: A machine or device for moving or processing things.</p>
+    </div>
 
-h1 {
-  font-size: 32px;
-  margin-bottom: 20px;
-  color: #333;
-  white-space: nowrap; /* <<< 修改點：強制標題不換行 */
-}
+    <!-- 顯示被打亂的字母區 -->
+    <div class="puzzle"></div>
+    
+    <!-- 顯示答案區 -->
+    <div class="answer"></div>
+    
+    <!-- 檢查答案按鈕 -->
+    <button id="checkBtn">Check Answer</button>
+    
+    <!-- 顯示結果 -->
+    <div id="result"></div>
 
-/* 提示區域 */
-.hint {
-  font-size: 18px;
-  margin-bottom: 20px;
-  color: #666;
-}
+    <!-- 加入音效 -->
+<audio id="correctSound" src="correct.mp3" preload="auto"></audio>
+<audio id="wrongSound" src="wrong.mp3" preload="auto"></audio>
+    
+  </div>
 
-/* 打亂字母區 */
-.puzzle {
-  display: flex;
-  justify-content: center;
-  align-items: center; /* <<< 讓字母垂直置中 */
-  margin-bottom: 20px;
-  gap: 8px;
-  flex-wrap: nowrap;
-  min-height: 70px; /* <<< 設定最小高度，防止坍塌 */
-}
-
-/* 每個字母 */
-.puzzle .letter {
-  width: 50px;
-  height: 50px;
-  background-color: #f0f0f0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  font-weight: bold;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-/* 隨機背景顏色 */
-.puzzle .letter:nth-child(odd) {
-  background-color: #f7b7b7; /* 淺紅色 */
-}
-
-.puzzle .letter:nth-child(even) {
-  background-color: #b7d7f7; /* 淺藍色 */
-}
-
-/* 當滑鼠懸停時的變化 */
-.puzzle .letter:hover {
-  background-color: #ff9e9e; /* 橙色 */
-}
-
-/* 答案區域 */
-.answer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-  height: 75px;
-  border: 2px solid #ddd;
-  padding: 10px;
-  background-color: #f9f9f9;
-  gap: 8px;
-  min-height: 75px;
-}
-
-.answer .letter {
-  width: 50px;
-  height: 50px;
-  background-color: #ddd;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  font-weight: bold;
-  border-radius: 10px;
-  opacity: 0.7;
-}
-
-/* 檢查答案按鈕 */
-button {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 18px;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 20px;
-}
-
-button:hover {
-  background-color: #45a049;
-}
-
-/* 結果顯示 */
-#result {
-  margin-top: 20px;
-  font-size: 20px;
-  font-weight: bold;
-  color: green;
-}
-
-#result.red {
-  color: red;
-}
+  <script src="script.js"></script>
+</body>
+</html>
