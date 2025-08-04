@@ -11,7 +11,9 @@ body {
 
 /* 遊戲容器 */
 .game-container {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-item: center;
   background-color: #fff;
   padding: 40px;
   border-radius: 8px;
