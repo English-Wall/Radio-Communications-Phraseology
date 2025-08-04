@@ -158,7 +158,6 @@ button:hover {
   border-radius: 4px; 
   cursor: pointer; 
   margin-top: 0; /* 因為已經由容器管理 margin-top */ 
-  margin-bottom: 20px;
 } 
 
 #hintBtn:hover { 
