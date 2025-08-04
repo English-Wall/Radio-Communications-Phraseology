@@ -11,6 +11,7 @@ body {
 
 /* 遊戲容器 */
 .game-container {
+  position: relative;
   text-align: center;
   background-color: #fff;
   padding: 40px;
@@ -121,8 +122,12 @@ button:hover {
 
 /* 結果顯示 */
 #result {
-  margin-top: 20px;
-  font-size: 20px;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  font-size: 25px;
   font-weight: bold;
   color: green;
 }
