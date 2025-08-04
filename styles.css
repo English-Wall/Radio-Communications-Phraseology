@@ -16,7 +16,7 @@ body {
   padding: 40px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 750px;
+  width: 800px; /* <<< 修改點：加寬容器 */
   max-width: 90%;
 }
 
@@ -24,7 +24,7 @@ h1 {
   font-size: 32px;
   margin-bottom: 20px;
   color: #333;
-  white-space: nowrap; /* <<< 修改點：強制標題不換行 */
+  white-space: nowrap; 
 }
 
 /* 提示區域 */
@@ -38,25 +38,22 @@ h1 {
 .puzzle {
   display: flex;
   justify-content: center;
-  align-items: center; /* <<< 讓字母垂直置中 */
+  align-items: center; /* <<< 新增：讓字母垂直置中 */
   margin-bottom: 20px;
-  gap: 8px;
+  gap: 7px;
   flex-wrap: nowrap;
-  min-height: 70px; /* <<< 設定最小高度，防止坍塌 */
-  flex-direction: column; /* 允許內容垂直排列 (用於結束畫面) */
-  font-size: 20px;       /* 為結束畫面的文字設定一個合適的大小 */
-  line-height: 1.6;      /* 增加行高，讓文字更易讀 */
+  min-height: 70px; /* <<< 新增：設定最小高度，防止坍塌 */
 }
 
 /* 每個字母 */
 .puzzle .letter {
-  width: 50px;
-  height: 50px;
+  width: 45px; /* <<< 修改點：縮小寬度 */
+  height: 45px; /* <<< 修改點：縮小高度 */
   background-color: #f0f0f0;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 24px;
+  font-size: 24px; /* <<< 修改點：縮小字體 */
   font-weight: bold;
   border-radius: 10px;
   cursor: pointer;
@@ -81,19 +78,20 @@ h1 {
 .answer {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; /* 讓字母垂直置中 */
   margin-bottom: 20px;
-  height: 75px;
+  height: 70px; /* <<< 修改點：調整高度以匹配新字母尺寸 */
   border: 2px solid #ddd;
   padding: 10px;
   background-color: #f9f9f9;
-  gap: 8px;
-  min-height: 75px;
+  gap: 7px; /* 確保與題目區間距一致 */
+  min-height: 70px; /* 確保即使沒內容也有高度 */
 }
 
+/* 這是用來處理原本設計中答案區色塊的樣式，實際上因為JS直接移動元素，這個樣式不會被應用到已放入的字母上 */
 .answer .letter {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   background-color: #ddd;
   display: flex;
   justify-content: center;
