@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const puzzleDiv = document.querySelector('.puzzle');
   const answerDiv = document.querySelector('.answer');
   const checkBtn = document.getElementById('checkBtn');
+  const hintBtn = document.getElementById('hintBtn'); // <<< 新增：獲取 Hint 按鈕 
   const resultDiv = document.getElementById('result');
   const hintP = document.querySelector('.hint p');
 
@@ -25,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   // --- Game State ---
-  let currentQuestionIndex = 0; // 2. 追蹤目前在哪一題
+  let currentQuestionIndex = 0;
   let draggedLetter = null;
 
   // --- Functions ---
@@ -83,6 +84,57 @@ document.addEventListener('DOMContentLoaded', () => {
     event.dataTransfer.setData('text/plain', draggedLetter.textContent);
   }
 
+  
+   // <<< 新增：鎖定字母的函式 >>> 
+
+  /** 
+   * Locks a letter, making it non-interactive. 
+   * @param {HTMLElement} letter - The letter element to lock. 
+   */ 
+  function lockLetter(letter) { 
+    letter.classList.add('locked'); 
+    letter.setAttribute('draggable', 'false'); 
+    // 移除所有可能的互動事件 
+    letter.removeEventListener('click', handlePuzzleLetterClick); 
+    letter.removeEventListener('click', handleAnswerLetterClick); 
+    letter.removeEventListener('dragstart', handleDragStart); 
+  } 
+
+
+  // <<< 新增：提供提示的函式 >>> 
+  /** 
+   * Provides a hint by revealing the first letter of the answer. 
+   */ 
+  function giveHint() { 
+    // 檢查答案區是否已經有字母，如果有了就不提供提示，避免搞亂玩家已有的答案 
+    if (answerDiv.children.length > 0) { 
+        hintBtn.disabled = true; // 直接禁用按鈕 
+        return; 
+    } 
+ 
+
+    const correctWord = questions[currentQuestionIndex].word; 
+    const firstLetterChar = correctWord[0]; 
+
+
+    // 從題目區找到第一個匹配提示字母的方塊 
+    const letterToMove = Array.from(puzzleDiv.children).find( 
+      (letter) => letter.textContent === firstLetterChar 
+    ); 
+
+
+    if (letterToMove) { 
+      // 將字母移動到答案區並鎖定它 
+      answerDiv.appendChild(letterToMove); 
+      lockLetter(letterToMove); 
+
+
+      // 禁用提示按鈕，每回合只能用一次 
+      hintBtn.disabled = true; 
+    } 
+  } 
+  
+  
   /**
    * 4. 檢查答案與處理遊戲進程
    */
@@ -125,6 +177,8 @@ document.addEventListener('DOMContentLoaded', () => {
     answerDiv.innerHTML = '';
     resultDiv.textContent = '';
     resultDiv.classList.remove('red', 'green');
+
+    hintBtn.disabled = false; // <<< 修改點：每回合開始時，重新啟用 Hint 按鈕 
     
     // 獲取當前題目資料
     const currentQuestion = questions[currentQuestionIndex];
@@ -176,7 +230,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   checkBtn.addEventListener('click', checkAnswer);
-
+  hintBtn.addEventListener('click', giveHint); // <<< 新增：為 Hint 按鈕加上點擊事件監聽 
+  
   // --- Start the Game ---
   loadQuestion(); // 初始載入第一題
 });
