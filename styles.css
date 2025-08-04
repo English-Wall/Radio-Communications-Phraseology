@@ -11,15 +11,15 @@ body {
 
 /* 遊戲容器 */
 .game-container {
-  display: flex;
-  flex-direction: column;
-  align-item: center;
+  position: relative;
+  text-align: center;
   background-color: #fff;
   padding: 40px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   width: 800px; /* <<< 修改點：加寬容器 */
   max-width: 90%;
+  padding-bottom: 80px;
 }
 
 h1 {
