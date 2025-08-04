@@ -5,22 +5,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const answerDiv = document.querySelector('.answer');
   const checkBtn = document.getElementById('checkBtn');
   const resultDiv = document.getElementById('result');
-  const hintP = document.querySelector('.hint p'); // 獲取提示的 <p> 元素
+  const hintP = document.querySelector('.hint p');
+
 
   // ======================================================================
   // 1. 建立題庫 (您可以自由新增、修改或刪除)
   // ======================================================================
   const questions = [
-    { word: 'machinery', hint: 'A machine or device for moving or processing things.' },
-    { word: 'javascript', hint: 'A popular programming language for the web.' },
-    { word: 'developer', hint: 'A person who creates computer software.' },
-    { word: 'interface', hint: 'A point where two systems, subjects, or organizations meet and interact.' },
-    { word: 'network', hint: 'A group or system of interconnected people or things.' },
-    { word: 'database', hint: 'An organized collection of structured information.' },
-    { word: 'security', hint: 'The state of being free from danger or threat.' },
-    { word: 'algorithm', hint: 'A process or set of rules to be followed in calculations.' },
-    { word: 'variable', hint: 'A named storage location in a program.' },
-    { word: 'function', hint: 'A block of code designed to perform a particular task.' }
+    { word: 'abrade', hint: 'To scrape or wear away a surface or a part by mechanical or chemical action.' },
+    { word: 'revise', hint: 'To change, improve, or update something, especially a document, plan, or idea.' },
+    { word: 'inspection', hint: 'The procedure which compares an object with its standard or specification' },
+    { word: 'hazardous', hint: 'Dangerous' },
+    { word: 'subsequent', hint: 'That comes “after”' },
+    { word: 'accidental', hint: ' That does not occur on purpose' },
+    { word: 'equivalent', hint: 'Has the same properties, functions, or values' },
+    { word: 'advisory', hint: 'Advice, warning, or non-mandatory recommendation from a manufacturer or authority.' },
+    { word: 'recurrence', hint: 'Something happening again or repeatedly, especially after a period of time.' },
+    { word: 'preliminary', hint: 'Initial' }
   ];
 
   // --- Game State ---
