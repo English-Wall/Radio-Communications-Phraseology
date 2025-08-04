@@ -121,17 +121,19 @@ button:hover {
 
 /* 結果顯示 */
 #result {
-  bottom: 20px;
-  left: 0;
-  right: 0;
-  margin: auto;
+  margin-top: 15px;
   font-size: 20px;
   font-weight: bold;
-  color: green;
+  text-align: center;
+  width: 100%;
+  
 }
-
 #result.red {
   color: red;
+}
+
+#result.green {
+  color: green;
 }
 
 
