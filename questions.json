@@ -1,6 +1,146 @@
 [
-  { "question": "哪一個字表示 : 肯定的用語", "answer": "Affirm", "image": "img/affirm.png" },
-  { "question": "哪一個字表示 : 否定的用語", "answer": "Deny", "image": "img/deny.png" },
-  { "question": "哪一個字表示 : 快速的", "answer": "Fast", "image": "img/fast.png" },
-  { "question": "哪一個字表示 : 慢速的", "answer": "Slow", "image": "img/slow.png" }
+  {
+    "term": "Acknowledge",
+    "definition": "領知，請讓我知道你已收到並瞭解這個訊息。"
+  },
+  {
+    "term": "Advise Intentions",
+    "definition": "請告知你的意向，例如：行進路線、目的地等。"
+  },
+  {
+    "term": "Affirm",
+    "definition": "是的，表示肯定的用語。"
+  },
+  {
+    "term": "Approved",
+    "definition": "同意提出的行動計畫。"
+  },
+  {
+    "term": "Break",
+    "definition": "稍後，指部分訊息間之分隔。"
+  },
+  {
+    "term": "Break Break",
+    "definition": "稍後，指非常繁忙時刻。"
+  },
+  {
+    "term": "Cancel",
+    "definition": "取消先前頒發之許可。"
+  },
+  {
+    "term": "Check",
+    "definition": "檢查系統或程序。"
+  },
+  {
+    "term": "Cleared",
+    "definition": "許可，授權在指定條件下進行。"
+  },
+  {
+    "term": "Confirm",
+    "definition": "請確認（許可、指示、行動、訊息）。"
+  },
+  {
+    "term": "Contact",
+    "definition": "與某單位建立無線電通信連絡。"
+  },
+  {
+    "term": "Correct",
+    "definition": "正確的或精確的。"
+  },
+  {
+    "term": "Correction",
+    "definition": "更正，發送（或資訊顯示）錯誤，正確版本為…"
+  },
+  {
+    "term": "Disregard",
+    "definition": "無效，不需理會。"
+  },
+  {
+    "term": "Go Ahead",
+    "definition": "請講（無其他意義）。"
+  },
+  {
+    "term": "Hold or Hold Position",
+    "definition": "停止，請你在原地停等。"
+  },
+  {
+    "term": "Hold Short of…",
+    "definition": "在跑道等待位置標線處前停等。"
+  },
+  {
+    "term": "How Do You Read",
+    "definition": "我的無線電發報之可辨認有多高？"
+  },
+  {
+    "term": "I Say Again",
+    "definition": "我再說一遍，為澄清或強調。"
+  },
+  {
+    "term": "Maintain",
+    "definition": "保持，指持續依照指示之條件執行。"
+  },
+  {
+    "term": "Monitor",
+    "definition": "守聽於（頻率）。"
+  },
+  {
+    "term": "Negative",
+    "definition": "表示否定、不正確的用語。"
+  },
+  {
+    "term": "Over",
+    "definition": "我的通話完畢，並等待回答。"
+  },
+  {
+    "term": "Out",
+    "definition": "通話完畢，不期盼回答。"
+  },
+  {
+    "term": "Proceed",
+    "definition": "請，管制員授權你開始或持續行進。"
+  },
+  {
+    "term": "Read Back",
+    "definition": "請覆誦，將所接收到訊息的全部或所述的部分重複一遍。"
+  },
+  {
+    "term": "Recleared",
+    "definition": "再許可。"
+  },
+  {
+    "term": "Report",
+    "definition": "報告，告訴我下列資訊…"
+  },
+  {
+    "term": "Request",
+    "definition": "要求，我想知道…我希望取得…"
+  },
+  {
+    "term": "Roger",
+    "definition": "收到了，收到你剛才發出之全部資訊。"
+  },
+  {
+    "term": "Say Again",
+    "definition": "請再說一遍。"
+  },
+  {
+    "term": "Speak Slower",
+    "definition": "請講慢一點。"
+  },
+  {
+    "term": "Standby",
+    "definition": "稍待再呼叫您。"
+  },
+  {
+    "term": "Unable",
+    "definition": "無法做到，無法遵循你的要求、指示或許可。"
+  },
+  {
+    "term": "Wilco",
+    "definition": "了解你的意思，將遵照辦理。"
+  },
+  {
+    "term": "Words Twice",
+    "definition": "請說兩遍，因通信困難，每個詞或每句話請說兩遍。"
+  }
 ]
