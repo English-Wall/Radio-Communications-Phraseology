@@ -1,61 +1,80 @@
-<!doctype html>
-<html lang="zh-Hant">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>找出錯誤 — 圖片點選互動遊戲</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>隨機問答測驗</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .question { font-weight: bold; margin-top: 20px; }
+    .option { display: block; margin: 5px 0; }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>找出錯誤（點擊圖中錯誤處）</h1>
-  </header>
 
-  <main>
-    <section class="controls">
-      <label>
-        模式：
-        <select id="modeSelect">
-          <option value="play">遊玩 (Play)</option>
-          <option value="edit">編輯 Hotspot (Edit)</option>
-        </select>
-      </label>
+<h1>隨機問答測驗</h1>
+<div id="quiz"></div>
 
-      <button id="resetBtn">重置標記</button>
-      <button id="revealBtn">顯示答案</button>
-      <button id="downloadHotspots">下載 Hotspots (JSON)</button>
-      <input id="imageInput" type="file" accept="image/*" />
-    </section>
+<script>
+const questionBank = [
+  { question: "哪一個字表示 : 肯定的用語", answer: "Affirm" },
+  { question: "哪一個字表示 : 否定的用語", answer: "Deny" },
+  { question: "哪一個字表示 : 快速的", answer: "Fast" },
+  { question: "哪一個字表示 : 慢速的", answer: "Slow" },
+  { question: "哪一個字表示 : 大的", answer: "Big" },
+  { question: "哪一個字表示 : 小的", answer: "Small" },
+  { question: "哪一個字表示 : 熱的", answer: "Hot" },
+  { question: "哪一個字表示 : 冷的", answer: "Cold" },
+  { question: "哪一個字表示 : 上", answer: "Up" },
+  { question: "哪一個字表示 : 下", answer: "Down" },
+  { question: "哪一個字表示 : 左", answer: "Left" },
+  { question: "哪一個字表示 : 右", answer: "Right" },
+  { question: "哪一個字表示 : 開", answer: "Open" },
+  { question: "哪一個字表示 : 關", answer: "Close" },
+  { question: "哪一個字表示 : 早", answer: "Early" },
+  { question: "哪一個字表示 : 晚", answer: "Late" },
+  { question: "哪一個字表示 : 高", answer: "Tall" },
+  { question: "哪一個字表示 : 矮", answer: "Short" },
+  { question: "哪一個字表示 : 強壯", answer: "Strong" },
+  { question: "哪一個字表示 : 虛弱", answer: "Weak" }
+];
 
-    <section class="image-area">
-      <!-- 使用者圖片，請把 example.JPG 換成你自己的圖片或透過上傳 -->
-      <div class="image-wrapper" id="imageWrapper">
-        <img id="mainImage" src="example.JPG" alt="測試圖片 (請換成你的例子)" />
-        <canvas id="overlay"></canvas>
-      </div>
-    </section>
+// 隨機抽 N 個題目
+function getRandomQuestions(arr, n) {
+  return arr.sort(() => 0.5 - Math.random()).slice(0, n);
+}
 
-    <section class="info">
-      <p id="message">請在圖片中點選你認為有錯誤或安全風險的地方。</p>
+// 取得隨機選項（包含正確答案 + 其他錯誤答案）
+function getOptions(correct, allAnswers) {
+  let options = [correct];
+  let wrongAnswers = allAnswers.filter(a => a !== correct);
+  wrongAnswers = wrongAnswers.sort(() => 0.5 - Math.random()).slice(0, 3);
+  options = options.concat(wrongAnswers);
+  return options.sort(() => 0.5 - Math.random());
+}
 
-      <div id="editTools" class="hidden">
-        <p>編輯模式：點擊設定 hotspot 中心，使用滑桿調整半徑，然後按「加入 hotspot」。</p>
-        <label>半徑 (像素): <input id="radiusRange" type="range" min="10" max="300" value="60"></label>
-        <button id="addHotspotBtn">加入 hotspot</button>
-        <button id="clearHotspotsBtn">清除所有 hotspot</button>
-      </div>
-    </section>
+function buildQuiz() {
+  const quizContainer = document.getElementById("quiz");
+  const allAnswers = questionBank.map(q => q.answer);
+  const selectedQuestions = getRandomQuestions(questionBank, 10);
 
-    <section class="hotspot-list">
-      <h3>Hotspot 列表 (相對百分比)：</h3>
-      <pre id="hotspotJSON"></pre>
-    </section>
-  </main>
+  selectedQuestions.forEach((q, index) => {
+    const qElem = document.createElement("div");
+    qElem.className = "question";
+    qElem.innerHTML = `${index + 1}. ${q.question}`;
+    quizContainer.appendChild(qElem);
 
-  <footer>
-    <small>範例由你可部署到 GitHub Pages。編輯模式可快速設定不同關卡的 hotspot。</small>
-  </footer>
+    const options = getOptions(q.answer, allAnswers);
+    options.forEach(option => {
+      const label = document.createElement("label");
+      label.className = "option";
+      label.innerHTML = `<input type="radio" name="q${index}" value="${option}"> ${option}`;
+      quizContainer.appendChild(label);
+    });
+  });
+}
 
-  <script src="script.js"></script>
+buildQuiz();
+</script>
+
 </body>
 </html>
