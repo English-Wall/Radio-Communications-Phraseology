@@ -1,199 +1,41 @@
-/* 設置全局字體 */
-body {
-  font-family: 'PT Sans', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+:root{
+  --max-width: 920px;
+  --accent: #2b7cff;
+  --ok: #2ecc71;
+  --bad: #ff4d4d;
+}
+*{box-sizing: border-box}
+body{
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans CJK TC", "PingFang TC", "Helvetica Neue", Arial;
   margin: 0;
-  background-color: #f0f0f0;
-}
-
-/* 遊戲容器 */
-.game-container {
-  text-align: center;
-  background-color: #fff;
-  padding: 40px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 800px; /* <<< 修改點：加寬容器 */
-  max-width: 90%;
-  padding-bottom: 100px;
-}
-
-h1 {
-  font-size: 32px;
-  margin-bottom: 20px;
-  color: #333;
-  white-space: nowrap; 
-}
-
-/* 提示區域 */
-.hint {
-  font-size: 18px;
-  margin-bottom: 20px;
-  color: #666;
-}
-
-/* 打亂字母區 */
-.puzzle {
+  padding: 16px;
   display: flex;
-  justify-content: center;
-  align-items: center; /* <<< 新增：讓字母垂直置中 */
-  margin-bottom: 20px;
-  gap: 7px;
-  flex-wrap: nowrap;
-  min-height: 70px; /* <<< 新增：設定最小高度，防止坍塌 */
-}
-
-/* 每個字母 */
-.puzzle .letter {
-  width: 45px; /* <<< 修改點：縮小寬度 */
-  height: 45px; /* <<< 修改點：縮小高度 */
-  background-color: #f0f0f0;
-  display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  font-size: 24px; /* <<< 修改點：縮小字體 */
-  font-weight: bold;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  color: #111;
+  background: #f7f9fc;
+}
+header h1{margin:0 0 12px 0;text-align:center}
+main{max-width:var(--max-width);width:100%}
+.controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.controls label, .controls button, .controls input{font-size:14px}
+.image-area{background:#fff;padding:10px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.image-wrapper{position:relative;max-width:100%;overflow:hidden}
+.image-wrapper img{display:block;width:100%;height:auto;user-select:none}
+#overlay{position:absolute;left:0;top:0;pointer-events:none}
+.info{margin-top:10px}
+.hidden{display:none}
+canvas{image-rendering:optimizeQuality}
+
+.hotspot-list{margin-top:14px;background:#fff;padding:10px;border-radius:6px;box-shadow:0 1px 6px rgba(0,0,0,0.04)}
+.hotspot-list pre{white-space:pre-wrap;word-wrap:break-word;margin:0;font-size:13px}
+
+.marker{
+  position:absolute;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+  mix-blend-mode:normal;
 }
 
-/* 隨機背景顏色 */
-.puzzle .letter:nth-child(odd) {
-  background-color: #f7b7b7; /* 淺紅色 */
-}
-
-.puzzle .letter:nth-child(even) {
-  background-color: #b7d7f7; /* 淺藍色 */
-}
-
-/* 當滑鼠懸停時的變化 */
-.puzzle .letter:hover {
-  background-color: #ff9e9e; /* 橙色 */
-}
-
-/* 答案區域 */
-.answer {
-  display: flex;
-  justify-content: center;
-  align-items: center; /* 讓字母垂直置中 */
-  margin-bottom: 20px;
-  height: 65px; /* <<< 修改點：調整高度以匹配新字母尺寸 */
-  border: 2px solid #ddd;
-  padding: 10px;
-  background-color: #f9f9f9;
-  gap: 7px; /* 確保與題目區間距一致 */
-  min-height: 70px; /* 確保即使沒內容也有高度 */
-}
-
-/* 這是用來處理原本設計中答案區色塊的樣式，實際上因為JS直接移動元素，這個樣式不會被應用到已放入的字母上 */
-.answer .letter {
-  width: 45px;
-  height: 45px;
-  background-color: #ddd;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  font-weight: bold;
-  border-radius: 10px;
-  opacity: 0.7;
-}
-
-/* 檢查答案按鈕 */
-button {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 18px;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-button:hover {
-  background-color: #45a049;
-}
-
-/* 結果顯示 */
-#result {
-  margin-top: 15px;
-  font-size: 20px;
-  font-weight: bold;
-  text-align: center;
-  width: 100%;
-  
-}
-#result.red {
-  color: red;
-}
-
-#result.green {
-  color: green;
-}
-
-
-/* 按鈕容器，讓兩個按鈕並排 */ 
-.button-container { 
-  display: flex; 
-  justify-content: center; 
-  gap: 15px; /* 按鈕間的距離 */ 
-  margin-top: 20px; 
-} 
-
- 
-
-/* 提示按鈕的樣式 */ 
-#hintBtn { 
-  background-color: #f0ad4e; /* 橘色，與綠色區分 */ 
-  color: white; 
-  border: none; 
-  padding: 10px 20px; 
-  font-size: 18px; 
-  border-radius: 4px; 
-  cursor: pointer; 
-  margin-top: 0; /* 因為已經由容器管理 margin-top */ 
-} 
-
-#hintBtn:hover { 
-  background-color: #ec971f; 
-} 
-
- 
-
-/* 按鈕被禁用時的樣式 */ 
-#hintBtn:disabled { 
-  background-color: #cccccc; 
-  cursor: not-allowed; 
-} 
-
- 
-
-/* 被鎖定的字母樣式 */ 
-.letter.locked { 
-  background-color: #d8d8d8 !important; /* 強制使用灰色背景 */ 
-  color: #555; 
-  cursor: not-allowed; /* 滑鼠指標變為「禁止」 */ 
-  opacity: 0.8; 
-} 
-
- 
-/* --- 修改原有的 button 樣式 --- */ 
-
-/* 移除原本按鈕的上邊距，因為已由新容器管理 */ 
-button { 
-  background-color: #4CAF50; 
-  color: white; 
-  border: none; 
-  padding: 10px 20px; 
-  font-size: 18px; 
-  border-radius: 4px; 
-  cursor: pointer; 
-  margin-top: 0; /* 從 20px 改為 0 */ 
-
-} 
+button{cursor:pointer;padding:6px 8px;border-radius:6px;border:1px solid rgba(0,0,0,0.08);background:#fff}
+button:active{transform:translateY(1px)}
