@@ -1,35 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Word Scramble Game</title>
-  <link rel="stylesheet" href="styles.css">
-  <!-- 引入 PT Sans 字體 -->
-  <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>找出錯誤 — 圖片點選互動遊戲</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="game-container">
-    <h1>Word Scramble Game</h1>
+  <header>
+    <h1>找出錯誤（點擊圖中錯誤處）</h1>
+  </header>
 
-    <!-- 提示區域 -->
-    <div class="hint">
-      <p></p></div>
+  <main>
+    <section class="controls">
+      <label>
+        模式：
+        <select id="modeSelect">
+          <option value="play">遊玩 (Play)</option>
+          <option value="edit">編輯 Hotspot (Edit)</option>
+        </select>
+      </label>
 
-    <!-- 顯示被打亂的字母區 -->
-    <div class="puzzle"></div>
-    
-    <!-- 顯示答案區 -->
-    <div class="answer"></div>
-    
-    <!-- 檢查答案按鈕 -->
-    <div class="button-container"></div>
-      <button id="checkBtn">Check Answer</button>
-      <button id="hintBtn">Hint</button>
-    <!-- 顯示結果 -->
-      <div id="result"></div>
- 
-</div>
+      <button id="resetBtn">重置標記</button>
+      <button id="revealBtn">顯示答案</button>
+      <button id="downloadHotspots">下載 Hotspots (JSON)</button>
+      <input id="imageInput" type="file" accept="image/*" />
+    </section>
+
+    <section class="image-area">
+      <!-- 使用者圖片，請把 example.jpg 換成你自己的圖片或透過上傳 -->
+      <div class="image-wrapper" id="imageWrapper">
+        <img id="mainImage" src="example.jpg" alt="測試圖片 (請換成你的例子)" />
+        <canvas id="overlay"></canvas>
+      </div>
+    </section>
+
+    <section class="info">
+      <p id="message">請在圖片中點選你認為有錯誤或安全風險的地方。</p>
+
+      <div id="editTools" class="hidden">
+        <p>編輯模式：點擊設定 hotspot 中心，使用滑桿調整半徑，然後按「加入 hotspot」。</p>
+        <label>半徑 (像素): <input id="radiusRange" type="range" min="10" max="300" value="60"></label>
+        <button id="addHotspotBtn">加入 hotspot</button>
+        <button id="clearHotspotsBtn">清除所有 hotspot</button>
+      </div>
+    </section>
+
+    <section class="hotspot-list">
+      <h3>Hotspot 列表 (相對百分比)：</h3>
+      <pre id="hotspotJSON"></pre>
+    </section>
+  </main>
+
+  <footer>
+    <small>範例由你可部署到 GitHub Pages。編輯模式可快速設定不同關卡的 hotspot。</small>
+  </footer>
 
   <script src="script.js"></script>
 </body>
