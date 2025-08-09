@@ -3,47 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <title>隨機問答測驗</title>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    .question { font-weight: bold; margin-top: 20px; }
-    .option { display: block; margin: 5px 0; }
-  </style>
 </head>
 <body>
 
 <h1>隨機問答測驗</h1>
 <div id="quiz"></div>
+<button id="submitBtn">提交答案</button>
+<div id="results"></div>
 
 <script>
-const questionBank = [
-  { question: "哪一個字表示 : 肯定的用語", answer: "Affirm" },
-  { question: "哪一個字表示 : 否定的用語", answer: "Deny" },
-  { question: "哪一個字表示 : 快速的", answer: "Fast" },
-  { question: "哪一個字表示 : 慢速的", answer: "Slow" },
-  { question: "哪一個字表示 : 大的", answer: "Big" },
-  { question: "哪一個字表示 : 小的", answer: "Small" },
-  { question: "哪一個字表示 : 熱的", answer: "Hot" },
-  { question: "哪一個字表示 : 冷的", answer: "Cold" },
-  { question: "哪一個字表示 : 上", answer: "Up" },
-  { question: "哪一個字表示 : 下", answer: "Down" },
-  { question: "哪一個字表示 : 左", answer: "Left" },
-  { question: "哪一個字表示 : 右", answer: "Right" },
-  { question: "哪一個字表示 : 開", answer: "Open" },
-  { question: "哪一個字表示 : 關", answer: "Close" },
-  { question: "哪一個字表示 : 早", answer: "Early" },
-  { question: "哪一個字表示 : 晚", answer: "Late" },
-  { question: "哪一個字表示 : 高", answer: "Tall" },
-  { question: "哪一個字表示 : 矮", answer: "Short" },
-  { question: "哪一個字表示 : 強壯", answer: "Strong" },
-  { question: "哪一個字表示 : 虛弱", answer: "Weak" }
-];
+async function loadQuestions() {
+  const res = await fetch('questions.json');
+  const questionBank = await res.json();
+  buildQuiz(questionBank);
+}
 
-// 隨機抽 N 個題目
 function getRandomQuestions(arr, n) {
   return arr.sort(() => 0.5 - Math.random()).slice(0, n);
 }
 
-// 取得隨機選項（包含正確答案 + 其他錯誤答案）
 function getOptions(correct, allAnswers) {
   let options = [correct];
   let wrongAnswers = allAnswers.filter(a => a !== correct);
@@ -52,28 +30,44 @@ function getOptions(correct, allAnswers) {
   return options.sort(() => 0.5 - Math.random());
 }
 
-function buildQuiz() {
+let selectedQuestions = [];
+
+function buildQuiz(questionBank) {
   const quizContainer = document.getElementById("quiz");
   const allAnswers = questionBank.map(q => q.answer);
-  const selectedQuestions = getRandomQuestions(questionBank, 10);
+  selectedQuestions = getRandomQuestions(questionBank, 10);
 
+  quizContainer.innerHTML = "";
   selectedQuestions.forEach((q, index) => {
     const qElem = document.createElement("div");
-    qElem.className = "question";
-    qElem.innerHTML = `${index + 1}. ${q.question}`;
-    quizContainer.appendChild(qElem);
+    qElem.innerHTML = `<p>${index + 1}. ${q.question}</p>`;
 
     const options = getOptions(q.answer, allAnswers);
     options.forEach(option => {
-      const label = document.createElement("label");
-      label.className = "option";
-      label.innerHTML = `<input type="radio" name="q${index}" value="${option}"> ${option}`;
-      quizContainer.appendChild(label);
+      qElem.innerHTML += `<label><input type="radio" name="q${index}" value="${option}"> ${option}</label><br>`;
     });
+
+    quizContainer.appendChild(qElem);
   });
 }
 
-buildQuiz();
+document.getElementById("submitBtn").addEventListener("click", () => {
+  const resultsContainer = document.getElementById("results");
+  resultsContainer.innerHTML = "<h2>正確答案</h2>";
+  
+  selectedQuestions.forEach((q, index) => {
+    const selected = document.querySelector(`input[name="q${index}"]:checked`);
+    const isCorrect = selected && selected.value === q.answer;
+    resultsContainer.innerHTML += `
+      <p>${index + 1}. ${q.question}</p>
+      <img src="${q.image}" alt="正確答案" width="200"><br>
+      你的答案：${selected ? selected.value : "未作答"} → ${isCorrect ? "✅" : "❌"}
+      <hr>
+    `;
+  });
+});
+
+loadQuestions();
 </script>
 
 </body>
