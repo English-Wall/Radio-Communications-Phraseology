@@ -1,0 +1,6 @@
+[
+  { "question": "哪一個字表示 : 肯定的用語", "answer": "Affirm", "image": "img/affirm.png" },
+  { "question": "哪一個字表示 : 否定的用語", "answer": "Deny", "image": "img/deny.png" },
+  { "question": "哪一個字表示 : 快速的", "answer": "Fast", "image": "img/fast.png" },
+  { "question": "哪一個字表示 : 慢速的", "answer": "Slow", "image": "img/slow.png" }
+]
