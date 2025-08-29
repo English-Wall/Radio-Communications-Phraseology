@@ -106,7 +106,7 @@
         feedbackContainer.classList.add('hidden');
         optionsContainer.classList.remove('disabled');
         optionsContainer.innerHTML = '';
-        questionText.innerHTML = '';
+        questionText.innerHTML = `<span id='question-text'>${quizQuestions[currentQuestionIndex].definition}</span>`;
         progressText.textContent = `問題 ${currentQuestionIndex + 1} / ${TOTAL_QUESTIONS}`;
         scoreText.textContent = `分數: ${score}`;
 
@@ -154,11 +154,12 @@
     function displayAnswerImage(term) {
         const imageName = term.replace(/\s+/g, '_') + '.jpg';
         const imageUrl = IMAGE_PATH + imageName;
-        questionText.innerHTML = '';
+        const questionTextElement = document.getElementById('question-text');
+        if (questionTextElement) questionTextElement.style.display = 'none';
         const img = document.createElement('img');
         img.src = imageUrl;
         img.alt = `正確答案 ${term} 的圖片`;
-        img.className = 'w-full max-h-60 object-contain rounded-lg border border-slate-300';
+        img.className = 'w-full max-h-60 object-contain rounded-lg border border-slate-300 mt-4';
         img.onload = () => questionText.appendChild(img);
         img.onerror = () => console.error(`無法載入圖片: ${imageUrl}`);
     }
