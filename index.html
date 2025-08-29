@@ -115,7 +115,7 @@
         options.forEach(option => {
             const button = document.createElement('button');
             button.textContent = option;
-            button.className = 'option-btn max-w-xs p4 min-h-16 border-2 border-slate-300 rounded-lg items-center justify-center text-center text-xl font-semibold text-slate-700 hover:bg-slate-100 hover:border-blue-500';
+            button.className = 'option-btn max-w-xs p4 min-h-14 border-2 border-slate-300 rounded-lg items-center justify-center text-center text-xl font-semibold text-slate-700 hover:bg-slate-100 hover:border-blue-500';
             button.addEventListener('click', () => selectAnswer(option, correctAnswer, button));
             optionsContainer.appendChild(button);
         });
