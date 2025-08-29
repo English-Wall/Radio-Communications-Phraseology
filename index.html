@@ -44,8 +44,7 @@
             <div id="score" class="text-lg font-bold text-blue-600">分數: 0</div>
         </div>
         <div class="mb-6">
-            <p class="text-slate-500 text-sm font-medium mb-2">請根據以下中文意思，選擇正確的專業術語：</p>
-            <div id="question" class="text-xl sm:text-2xl font-bold text-slate-800 bg-slate-50 p-4 rounded-lg min-h-[100px] flex flex-col items-start"></div>
+            <div id="question" class="text-xl sm:text-2xl font-bold text-slate-800 bg-slate-50 p-4 rounded-lg min-h-[100px] flex flex-col items-center justify-center"></div>
         </div>
         <div id="options-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6"></div>
         <div id="feedback-container" class="text-center hidden">
@@ -107,7 +106,7 @@
         feedbackContainer.classList.add('hidden');
         optionsContainer.classList.remove('disabled');
         optionsContainer.innerHTML = '';
-        questionText.innerHTML = `<span>${quizQuestions[currentQuestionIndex].definition}</span>`;
+        questionText.innerHTML = '';
         progressText.textContent = `問題 ${currentQuestionIndex + 1} / ${TOTAL_QUESTIONS}`;
         scoreText.textContent = `分數: ${score}`;
 
@@ -155,10 +154,11 @@
     function displayAnswerImage(term) {
         const imageName = term.replace(/\s+/g, '_') + '.jpg';
         const imageUrl = IMAGE_PATH + imageName;
+        questionText.innerHTML = '';
         const img = document.createElement('img');
         img.src = imageUrl;
         img.alt = `正確答案 ${term} 的圖片`;
-        img.className = 'mt-4 w-full max-h-60 object-contain rounded-lg border border-slate-300';
+        img.className = 'w-full max-h-60 object-contain rounded-lg border border-slate-300';
         img.onload = () => questionText.appendChild(img);
         img.onerror = () => console.error(`無法載入圖片: ${imageUrl}`);
     }
