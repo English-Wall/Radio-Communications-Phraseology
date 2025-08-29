@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>塔臺地面管制術語小測驗</title>
-    <script/cdn.tailwindcss.com
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
             font-family: 'Inter', 'Noto Sans TC', sans-serif;
@@ -31,52 +32,34 @@
     </style>
 </head>
 <body class="bg-white flex justify-center pt-12 px-4 min-h-screen">
-
 <div id="quiz-container" class="w-full max-w-2xl mx-auto p-6 md:p-8">
-
-    <!-- 開始畫面 -->
     <div id="start-screen" class="text-center">
         <h1 class="text-xl sm:text-3xl font-bold text-slate-800 mb-4">塔臺地面管制術語小測驗</h1>
         <p class="text-slate-600 mb-8">快來小試身手10個問題!</p>
-        <button id="start-btn" class="w-full max-w-xs bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg text-lg transition-transform transform hover:scale-105">
-            開始測驗
-        </button>
+        <button id="start-btn" class="w-full max-w-xs bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg text-lg transition-transform transform hover:scale-105">開始測驗</button>
     </div>
-
-    <!-- 測驗畫面 -->
     <div id="quiz-screen" class="hidden">
         <div class="flex justify-between items-center mb-6">
             <div id="progress" class="text-lg font-semibold text-slate-500">問題 1 / 10</div>
             <div id="score" class="text-lg font-bold text-blue-600">分數: 0</div>
         </div>
-
         <div class="mb-6">
             <p class="text-slate-500 text-sm font-medium mb-2">請根據以下中文意思，選擇正確的專業術語：</p>
             <div id="question" class="text-xl sm:text-2xl font-bold text-slate-800 bg-slate-50 p-4 rounded-lg min-h-[100px] flex flex-col items-start"></div>
         </div>
-
         <div id="options-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6"></div>
-
         <div id="feedback-container" class="text-center hidden">
             <p id="feedback-text" class="text-xl font-bold mb-4"></p>
-            <button id="next-btn" class="w-full sm:w-auto bg-slate-700 hover:bg-slate-800 text-white font-bold py-3 px-8 rounded-lg text-lg transition-transform transform hover:scale-105">
-                下一題
-            </button>
+            <button id="next-btn" class="w-full sm:w-auto bg-slate-700 hover:bg-slate-800 text-white font-bold py-3 px-8 rounded-lg text-lg transition-transform transform hover:scale-105">下一題</button>
         </div>
     </div>
-
-    <!-- 結果畫面 -->
     <div id="result-screen" class="hidden text-center">
         <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">測驗結束！</h2>
         <p class="text-2xl text-slate-600 mb-2">你的最終成績是：</p>
         <p id="final-score" class="text-6xl font-bold text-blue-600 mb-8">0 / 10</p>
-        <button id="restart-btn" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg text-lg transition-transform transform hover:scale-105">
-            再玩一次
-        </button>
+        <button id="restart-btn" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg text-lg transition-transform transform hover:scale-105">再玩一次</button>
     </div>
-
 </div>
-
 <script>
     const startBtn = document.getElementById('start-btn');
     const nextBtn = document.getElementById('next-btn');
@@ -211,6 +194,5 @@
     restartBtn.addEventListener('click', startQuiz);
     loadQuestions();
 </script>
-
 </body>
 </html>
