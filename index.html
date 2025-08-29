@@ -159,7 +159,7 @@
         const img = document.createElement('img');
         img.src = imageUrl;
         img.alt = `正確答案 ${term} 的圖片`;
-        img.className = 'w-full max-h-60 object-contain rounded-lg border border-slate-300 mt-4';
+        img.className = 'max-w-xs max-h-60 object-contain mt-4';
         img.onload = () => questionText.appendChild(img);
         img.onerror = () => console.error(`無法載入圖片: ${imageUrl}`);
     }
