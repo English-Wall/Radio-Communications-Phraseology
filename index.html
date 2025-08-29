@@ -37,6 +37,7 @@
         /* 讓圖片容器有固定的長寬比，避免頁面跳動 */
         #answer-image-container {
             aspect-ratio: 16 / 9;
+            img id="answer-image" class="w-full h-auto object-contain" />
         }
     </style>
 </head>
@@ -46,7 +47,7 @@
         
         <!-- 測驗開始畫面 -->
         <div id="start-screen" class="text-center">
-            <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">塔臺地面管制術語小測驗</h1>
+            <h1 class="text-xl sm:text-3xl font-bold text-slate-800 mb-4">塔臺地面管制術語小測驗</h1>
             <p class="text-slate-600 mb-8">快來小試身手10個問題!</p>
             <button id="start-btn" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg text-lg transition-transform transform hover:scale-105">
                 開始測驗
